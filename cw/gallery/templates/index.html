@@ -16,13 +16,9 @@
                 <p class="card-text mb-0">{{ photo.created_at }}</p>
                 <a href="{% url 'photo_detail' pk=photo.pk%}">Details</a>
                 <br>
-                {% if perms.gallery.photo_upgrade %}
                 <a href="{% url 'photo_update' pk=photo.pk%}">Upgrade</a>
-                {% endif %}
                 <br>
-                {% if perms.gallery.photo_upgrade %}
                 <a href="{% url 'photo_delete' pk=photo.pk%}">Delete</a>
-                {% endif %}
             </div>
         </div>
         {% endfor %}

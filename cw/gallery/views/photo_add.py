@@ -23,7 +23,7 @@ class PhotoUpdateView(PermissionRequiredMixin,UpdateView):
     template_name = 'photo_update.html'
     form_class = PhotoForm
     model = Photo
-    permission_required = 'gallery.photo_update'
+    permission_required = 'gallery.photo_change'
     def get_success_url(self):
         return reverse('index')
 

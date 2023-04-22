@@ -32,22 +32,12 @@
                 </li>
             </ul>
         </div>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'article_add' %}">Create Tasks</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'project_add' %}">Create Project</a>
-        </li>
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <input type="submit" class="btn btn-primary" value="Выйти">
         </form>
         </li>
-        {% else %}
-        <li><a href="{% url 'login' %}" class="btn btn-primary">Войти</a></li>
-        <li><a href="{% url 'register' %}" class="btn btn-primary">Зарегистрироваться</a></li>
-        {% endif %}
+
     </div>
 </nav>
 <br>
