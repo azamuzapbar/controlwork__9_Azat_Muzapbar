@@ -11,3 +11,11 @@ class Photo(models.Model):
 
     def __str__(self):
         return f'{self.author}'
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, related_name='favorite_photos', verbose_name='Избранное', null=False,
+                             on_delete=models.CASCADE)
+    photo = models.ForeignKey(Photo, related_name='favorite_users', verbose_name='Избранное', null=False,
+                              on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(verbose_name='удалено', default=False, null=False)

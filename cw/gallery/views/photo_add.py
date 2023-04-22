@@ -19,16 +19,18 @@ class PhotoCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('index')
 
-class PhotoUpdateView(PermissionRequiredMixin,UpdateView):
+
+class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
     template_name = 'photo_update.html'
     form_class = PhotoForm
     model = Photo
     permission_required = 'gallery.photo_change'
+
     def get_success_url(self):
         return reverse('index')
 
 
-class PhotoDeleteView(PermissionRequiredMixin,DeleteView):
+class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'photo_confirm_delete.html'
     model = Photo
     permission_required = 'gallery.photo_delete'

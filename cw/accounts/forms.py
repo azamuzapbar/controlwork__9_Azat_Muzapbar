@@ -7,6 +7,7 @@ class LoginForm(forms.Form):
     email = forms.CharField(required=True, label='Логин')
     password = forms.CharField(required=True, label='Пароль', widget=forms.PasswordInput)
 
+
 class CustomUserCreationForm(forms.ModelForm):
     username = forms.CharField(min_length=5, max_length=50,
                                widget=forms.TextInput, required=True)
@@ -19,8 +20,7 @@ class CustomUserCreationForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = (
-            'username', 'email',  'password', 'password_confirm')
-
+            'username', 'email', 'password', 'password_confirm')
 
     def clean(self):
         cleaned_data = super().clean()
