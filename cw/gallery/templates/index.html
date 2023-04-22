@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Guest book {% endblock %}
+{% block menu %} {% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    {% for photo in photos %}
+    <div class="card photo-card">
+        <div class="card-body">
+            {% if photo.image %}
+            <img class="card-img-top" src="{{ photo.image.url }}" alt="{{ photo.description }}">
+            {% endif %}
+            <div class="photo-card-footer">
+                <p class="card-text mb-0">{{ photo.author.username }} {{ photo.description }}</p>
+                <p class="card-text mb-0">{{ photo.created_at }}</p>
+                <a href="{% url 'photo_detail' pk=photo.pk%}">Details</a>
+                <br>
+                <a href="{% url 'photo_update' pk=photo.pk%}">Upgrade</a>
+                <br>
+                <a href="{% url 'photo_delete' pk=photo.pk%}">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

@@ -43,7 +43,7 @@ def logout_view(request):
 class RegisterView(CreateView):
     template_name = 'register.html'
     form_class = CustomUserCreationForm
-    success_url = '/'
+    success_url = 'login'
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
