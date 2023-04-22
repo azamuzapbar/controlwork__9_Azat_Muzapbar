@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, CreateView, DetailView
 from accounts.forms import LoginForm
@@ -55,14 +56,14 @@ class RegisterView(CreateView):
         context = {'form': form}
         return self.render_to_response(context)
 
-
 class ProfileView(LoginRequiredMixin, DetailView):
-    model = get_user_model()
+    model = User
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.get_object()
-        context['posts'] = Photo.objects.filter(author=user).order_by('-created_at')
+        context['photos'] = Photo.objects.filter(author=user).order_by('-created_at')
         return context
